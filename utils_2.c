@@ -6,18 +6,18 @@
 /*   By: yjarhbou <yjarhbou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 20:59:48 by yjarhbou          #+#    #+#             */
-/*   Updated: 2022/08/19 01:53:36 by yjarhbou         ###   ########.fr       */
+/*   Updated: 2022/08/21 01:48:33 by yjarhbou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_pthread_join(t_philos *philo)
+int	ft_pthread_join(t_philos *philo, int nbr)
 {
 	int	i;
 
 	i = -1;
-	while (++i < philo->arg->philo_nbr)
+	while (++i < nbr)
 	{
 		if (pthread_join(philo[i].philo_thread, NULL))
 			return (1);
@@ -70,14 +70,3 @@ int	sleeping(t_philos *philo)
 		return (1);
 	return (0);
 }
-
-		// printf("has taken a fork\n");
-		// else if (state == EATING)
-		// 	printf("is eating\n");
-		// else if (state == SLEEPING)
-		// 	printf("is sleeping\n");
-		// else if (state == THINKING)
-		// 	printf("is thinking\n");
-		// else if (state == DEAD)
-		// {
-		// 	printf("died\n");

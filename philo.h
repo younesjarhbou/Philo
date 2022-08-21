@@ -6,7 +6,7 @@
 /*   By: yjarhbou <yjarhbou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 16:05:44 by yjarhbou          #+#    #+#             */
-/*   Updated: 2022/08/19 01:36:29 by yjarhbou         ###   ########.fr       */
+/*   Updated: 2022/08/19 10:25:53 by yjarhbou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ typedef struct s_philo
 int	ft_atoi(const char *str);
 int	check_argment(int ac);
 long	ft_get_time(void);
-void	init_stack(t_myargument *arg, char **av);
+void	init_stack(t_myargument *arg, char **av, int ac);
 int		init_helper(t_philos *philo, t_myargument *arg);
 t_philos	*init_struct(t_myargument *arg);
-int	ft_pthread_join(t_philos *philo);
+int	ft_pthread_join(t_philos *philo, int nbr);
 int	thinking(t_philos *philo);
 int	eating(t_philos *ph);
 int	sleeping(t_philos *philo);

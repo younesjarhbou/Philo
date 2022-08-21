@@ -6,7 +6,7 @@
 /*   By: yjarhbou <yjarhbou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 20:58:17 by yjarhbou          #+#    #+#             */
-/*   Updated: 2022/08/19 01:53:21 by yjarhbou         ###   ########.fr       */
+/*   Updated: 2022/08/21 01:55:21 by yjarhbou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ int	ft_sleep(long s_time, t_philos *ph)
 	while (sleep_start + s_time > current_time)
 	{
 		if (*(ph->alive) == false)
+		{
+			usleep(150);
 			return (1);
+		}
 		if (ph->arg->time_to_die < ((current_time - ph->arg->time_stamp) \
 					- ph->last_meal))
 		{
@@ -67,16 +70,14 @@ int	ft_sleep(long s_time, t_philos *ph)
 
 int	printer(t_philos *ph, char *msg, int dead)
 {
-	if (pthread_mutex_lock(ph->printf_mutex))
-		return (1);
 	if (ph->alive)
 	{
+		pthread_mutex_lock(ph->printf_mutex);
 		printf("%ld philo %d ", ft_get_time() - ph->arg->time_stamp, ph->id);
-		if (dead)
+		if (dead == 1)
 			ph->alive = false;
 		printf("%s", msg);
+		pthread_mutex_unlock(ph->printf_mutex);
 	}
-	if (pthread_mutex_unlock(ph->printf_mutex))
-		return (1);
 	return (0);
 }

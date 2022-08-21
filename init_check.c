@@ -6,7 +6,7 @@
 /*   By: yjarhbou <yjarhbou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 00:57:26 by yjarhbou          #+#    #+#             */
-/*   Updated: 2022/08/19 01:54:31 by yjarhbou         ###   ########.fr       */
+/*   Updated: 2022/08/19 10:23:20 by yjarhbou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ long	ft_get_time(void)
 	return ((long)(current_time.tv_sec * 1000 + current_time.tv_usec / 1000));
 }
 
-void	init_stack(t_myargument *arg, char **av)
+void	init_stack(t_myargument *arg, char **av, int ac)
 {
 	arg->time_stamp = ft_get_time();
 	arg->philo_nbr = ft_atoi(av[1]);
 	arg->time_to_die = ft_atoi(av[2]);
 	arg->time_to_eat = ft_atoi(av[3]);
 	arg->time_to_sleep = ft_atoi(av[4]);
-	if (ft_atoi(av[5]))
+	if (ac == 6)
 		arg->number_meal = ft_atoi(av[5]);
 	else
 		arg->number_meal = -1;

@@ -70,14 +70,15 @@ int	ft_sleep(long s_time, t_philos *ph)
 
 int	printer(t_philos *ph, char *msg, int dead)
 {
+	pthread_mutex_lock(ph->printf_mutex);
 	if (ph->alive)
 	{
-		pthread_mutex_lock(ph->printf_mutex);
 		printf("%ld philo %d ", ft_get_time() - ph->arg->time_stamp, ph->id);
 		if (dead == 1)
 			ph->alive = false;
 		printf("%s", msg);
-		pthread_mutex_unlock(ph->printf_mutex);
+		
 	}
+	pthread_mutex_unlock(ph->printf_mutex);
 	return (0);
 }

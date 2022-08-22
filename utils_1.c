@@ -6,7 +6,7 @@
 /*   By: yjarhbou <yjarhbou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 20:58:17 by yjarhbou          #+#    #+#             */
-/*   Updated: 2022/08/21 01:55:21 by yjarhbou         ###   ########.fr       */
+/*   Updated: 2022/08/22 19:06:00 by yjarhbou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,17 @@ int	ft_sleep(long s_time, t_philos *ph)
 
 int	printer(t_philos *ph, char *msg, int dead)
 {
-	pthread_mutex_lock(ph->printf_mutex);
 	if (ph->alive)
 	{
+		pthread_mutex_lock(ph->printf_mutex);
 		printf("%ld philo %d ", ft_get_time() - ph->arg->time_stamp, ph->id);
-		if (dead == 1)
-			ph->alive = false;
 		printf("%s", msg);
-		
+		if (dead == 1)
+		{
+			ph->alive = false;
+			return (1);
+		}
+		pthread_mutex_unlock(ph->printf_mutex);
 	}
-	pthread_mutex_unlock(ph->printf_mutex);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: yjarhbou <yjarhbou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 16:16:11 by yjarhbou          #+#    #+#             */
-/*   Updated: 2022/08/21 01:51:07 by yjarhbou         ###   ########.fr       */
+/*   Updated: 2022/08/24 20:15:30 by yjarhbou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int ac, char **av)
 	t_myargument	arg;
 	t_philos		*philo;
 
-	if (!check_argment(ac))
+	if (!check_argment(ac, av))
 		return (1);
 	init_stack(&arg, av, ac);
 	philo = init_struct(&arg);

@@ -6,7 +6,7 @@
 /*   By: yjarhbou <yjarhbou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 00:57:26 by yjarhbou          #+#    #+#             */
-/*   Updated: 2022/08/24 20:14:43 by yjarhbou         ###   ########.fr       */
+/*   Updated: 2022/08/28 22:13:30 by yjarhbou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	check_argment(int ac, char **av)
 	i = 2;
 	if (ac != 5 && ac != 6)
 		return (printf("Error\n syntax error too many | less argument"), 0);
-	while (i < ac)
+	while (i < ac - 1)
 	{
 		if (ft_atoi(av[i]) < 60 || ft_atoi(av[1]) == 0)
 			return (printf("Error\n syntax"), 0);

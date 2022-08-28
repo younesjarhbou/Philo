@@ -6,7 +6,7 @@
 /*   By: yjarhbou <yjarhbou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 16:05:44 by yjarhbou          #+#    #+#             */
-/*   Updated: 2022/08/24 20:17:56 by yjarhbou         ###   ########.fr       */
+/*   Updated: 2022/08/28 22:13:54 by yjarhbou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ typedef struct s_philo
 	bool				*alive;
 }	t_philos;
 
-int	check_argment(int ac, char **av);
 int	ft_atoi(const char *str);
+int	check_argment(int ac, char **av);
 long	ft_get_time(void);
 void	init_stack(t_myargument *arg, char **av, int ac);
 int		init_helper(t_philos *philo, t_myargument *arg);
@@ -60,3 +60,19 @@ int	free_data(t_philos *ph);
 int	ft_sleep(long s_time, t_philos *philo);
 
 #endif
+
+
+
+	// t_philo	*philo;
+
+	// philo = (t_philo *)malloc(sizeof(t_philo) * param->philos_nbr);
+	// philo->alive = (bool *)malloc(sizeof(bool));
+	// philo->print = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
+	// if (!philo || !philo->alive || !philo->print)
+	// 	return (NULL);
+	// *(philo->alive) = true;
+	// if (pthread_mutex_init(philo->print, NULL))
+	// 	return (NULL);
+	// if (fill_philo(philo, param))
+	// 	return (NULL);
+	// return (philo);

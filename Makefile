@@ -2,8 +2,8 @@ SRCS 		= main.c utils_1.c utils_2.c init_check.c
 OBJES 		=   ${SRCS:.c=.o}
 
 NAME 		=   philo
-CC 			=   cc
-CFLAGS 		=   -Wall -Wextra -Werror
+CC 			=   gcc
+CFLAGS 		=   -Wall -Wextra -Werror 
 RM 			=   rm -rf
 
 
@@ -17,23 +17,14 @@ RM 			=   rm -rf
 all			:	$(NAME)
 
 $(NAME)		:	$(OBJES) 
-				$(CC) $(OBJES) -o $(NAME)
-				clear
-
-
+				$(CC) $(CFLAGS)$(OBJES) -o $(NAME)	
 
 clean		:
 				$(RM) $(OBJES)
 
-
-
 fclean		:	clean
 				$(RM) $(NAME)
 
-
-
 re			:	clean all
-
-
 
 .PHONY		:	all clean fclean re

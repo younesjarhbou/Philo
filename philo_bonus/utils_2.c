@@ -21,9 +21,9 @@ int	ft_pthread_join(t_philos *philo, int nbr)
 	{
 		if (pthread_join(philo[i].philo_thread, NULL))
 			return (1);
-		sem_destroy(philo[i].r_fork);
+		(philo[i].r_fork);
 	}
-	sem_destroy(philo->printf_mutex);
+	(philo->printf_mutex);
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yjarhbou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yjarhbou <yjarhbou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 00:57:26 by yjarhbou          #+#    #+#             */
-/*   Updated: 2022/08/29 03:24:07 by yjarhbou         ###   ########.fr       */
+/*   Updated: 2022/08/28 22:13:30 by yjarhbou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ int	init_helper(t_philos *ph, t_myargument *arg)
 	i = 0;
 	while (i < arg->philo_nbr)
 	{
-		ph[i].r_fork = (sem_t *)malloc(sizeof(sem_t));
-		if (!ph[i].r_fork || sem_init(&ph[i].r_fork, 0, 1))
+		ph[i].r_fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
+		if (!ph[i].r_fork || pthread_mutex_init(ph[i].r_fork, NULL))
 			return (1);
 		i++;
 	}

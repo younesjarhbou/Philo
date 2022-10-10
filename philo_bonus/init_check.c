@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yjarhbou <yjarhbou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/19 00:57:26 by yjarhbou          #+#    #+#             */
-/*   Updated: 2022/08/28 22:13:30 by yjarhbou         ###   ########.fr       */
+/*   Created: 2022/08/25 21:21:07 by yjarhbou          #+#    #+#             */
+/*   Updated: 2022/10/10 08:13:28 by yjarhbou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ int	check_argment(int ac, char **av)
 {
 	int	i;
 
-	i = 2;
+	i = 1;
 	if (ac != 5 && ac != 6)
 		return (printf("Error\n syntax error too many | less argument"), 0);
-	while (i < ac - 1)
+	while (i < ac)
 	{
-		if (ft_atoi(av[i]) < 60 || ft_atoi(av[1]) == 0)
+		if (ft_atoi(av[i]) <= 0)
 			return (printf("Error\n syntax"), 0);
 		i++;
 	}
@@ -67,32 +67,43 @@ void	init_stack(t_myargument *arg, char **av, int ac)
 	else
 		arg->number_meal = -1;
 }
+	// sem_unlink("forks_sem");
+	// sem_unlink("print_sem");
+	// sem_unlink("done_sem");
+	// sem_unlink("finish_eat_sem");
+	// data->forks_sem = sem_open("forks_sem", O_CREAT, 0644, data->nbr_of_philos);
+	// data->print_sem = sem_open("print_sem", O_CREAT, 0644, 1);
+	// data->done_sem = sem_open("done_sem", O_CREAT, 0644, 0);
+	// data->finish_eat_sem = sem_open("finish_eat_sem", O_CREAT, 0644, 0);
+	// if (data->forks_sem == SEM_FAILED || data->print_sem == SEM_FAILED
+	// 	|| data->done_sem == SEM_FAILED || data->finish_eat_sem == SEM_FAILED)
+	// 	exit(EXIT_FAILURE);
 
 int	init_helper(t_philos *ph, t_myargument *arg)
 {
 	int	i;
 
-	i = 0;
-	while (i < arg->philo_nbr)
-	{
-		ph[i].r_fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
-		if (!ph[i].r_fork || pthread_mutex_init(ph[i].r_fork, NULL))
-			return (1);
-		i++;
-	}
-	i = 0;
-	while (i < arg->philo_nbr)
+	i = -1;
+	// while (++i < arg->philo_nbr)
+	// {
+	// 	ph[i].r_fork = sem_open("r_fork", O_CREAT, 0644, arg->philo_nbr);
+	// 	if (ph->r_fork == SEM_FAILED)
+	// 		return (1);
+	// }
+	i = -1;
+	while (++i < arg->philo_nbr)
 	{
 		ph[i].id = i + 1;
-		ph[i].l_fork = ph[(i + 1) % arg->philo_nbr].r_fork;
-		ph[i].alive = ph[0].alive;
-		ph[i].printf_mutex = ph[0].printf_mutex;
+	//	sem_unlink("printf_mutex");
+		//ph[i].l_fork = ph[(i + 1) % arg->philo_nbr].r_fork;
+	//	ph[i].printf_mutex = sem_open("printf_mutex", O_CREAT, 0644, 1);
 		ph[i].arg = arg;
-		ph[i].last_meal = 0;
+		ph[i].last_meal = ft_time(ph);
 		ph[i].meal_eaten = 0;
-		if (pthread_create(&ph[i].philo_thread, 0, &actions, (void *)&ph[i]))
-			return (1);
-		i++;
+		//ph[i].process_id = mall
+		// if (pthread_create(&ph[i].philo_thread, 0, &actions, (void *)&ph[i]))
+		// 	return (1);
+		// pthread_detach(ph[i].philo_thread);
 	}
 	return (0);
 }
